@@ -63,4 +63,4 @@ function printListRec(list) {
 
 }
 
-printList(list);
+printListRec(list);
