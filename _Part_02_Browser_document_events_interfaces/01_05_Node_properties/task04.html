@@ -1,0 +1,16 @@
+<html>
+
+<body>
+  <script>
+
+    console.log(document.constructor.name);                                                        // HTMLDocument
+    console.log(HTMLDocument.prototype.constructor.name);                                          // HTMLDocument
+    console.log(HTMLDocument.prototype.__proto__.constructor.name);                                // Document
+    console.log(HTMLDocument.prototype.__proto__.__proto__.constructor.name);                      // Node
+    console.log(HTMLDocument.prototype.__proto__.__proto__.__proto__.constructor.name);            // EventTarget
+    console.log(HTMLDocument.prototype.__proto__.__proto__.__proto__.__proto__.constructor.name);  // Object
+
+  </script>
+</body>
+
+</html>
