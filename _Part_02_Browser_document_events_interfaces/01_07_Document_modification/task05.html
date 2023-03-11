@@ -1,0 +1,66 @@
+<html>
+
+<body>
+
+  <div id="container"></div>
+
+  <script>
+    /* Напишите функцию createTree, 
+    которая создаёт вложенный список ul / li из объекта.
+    
+        Например: */
+
+    let data = {
+      "Рыбы": {
+        "форель": {},
+        "лосось": {}
+      },
+
+      "Деревья": {
+        "Огромные": {
+          "секвойя": {},
+          "дуб": {}
+        },
+        "Цветковые": {
+          "яблоня": {},
+          "магнолия": {}
+        }
+      }
+    };
+
+    function createTree(container, obj) {
+      container.append(createList(obj));
+    }
+
+    // рекурсивная ф-я
+    function createList(obj) {
+
+      // если нет дочерних элементов, отменяем создание списка
+      if (!Object.keys(obj).length) return;
+
+      let ul = document.createElement('ul');
+
+      for (let key in obj) {  // для каждого ключа объекта создаём li
+        let li = document.createElement('li');
+        li.innerHTML = key;
+
+        // вложенный список
+        let childrenUl = createList(obj[key]);
+        if (childrenUl) {
+          li.append(childrenUl);
+        }
+
+        ul.append(li);
+      }
+
+      return ul;
+    }
+
+    let container = document.getElementById('container');
+    createTree(container, data); // создаёт дерево в контейнере
+
+  </script>
+
+</body>
+
+</html>
