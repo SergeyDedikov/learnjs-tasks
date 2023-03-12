@@ -57,8 +57,7 @@
       let cloneBtn = createButton('remove-button').cloneNode(true);
 
       // на каждую кнопку повесим обработчик клика
-      // удаляем родительский элемент
-      cloneBtn.onclick = (e) => e.currentTarget.closest('.pane').remove();
+      cloneBtn.onclick = () => message.remove();
 
       // вставим в сообщение
       message.append(cloneBtn);
