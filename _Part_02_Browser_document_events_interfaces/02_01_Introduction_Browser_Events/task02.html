@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<title>Задача 2</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * Создайте кнопку, которая будет скрывать себя по нажатию.
+    */
+    const button = document.createElement('button');
+    button.innerText = 'Нажми меня, чтобы спряталась';
+    document.body.append(button);
+
+    button.onclick = function () {
+      this.hidden = 'true';
+    };
+
+  </script>
+</body>
+
+</html>
