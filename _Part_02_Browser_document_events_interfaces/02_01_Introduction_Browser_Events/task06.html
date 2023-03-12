@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="./task06.css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <div>
+    <div class="pane">
+      <h3>Лошадь</h3>
+      <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой
+        лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
+    </div>
+    <div class="pane">
+      <h3>Осёл</h3>
+      <p>Домашний осёл (лат. Equus asinus asinus), или ишак, — одомашненный подвид дикого осла (Equus asinus), сыгравший
+        важную историческую роль в развитии хозяйства и культуры человека и по-прежнему широко в хозяйстве многих
+        развивающихся стран.</p>
+    </div>
+    <div class="pane">
+      <h3>Кошка</h3>
+      <p>Кошка, или домашняя кошка (лат. Felis silvestris catus), — домашнее животное, одно из наиболее
+        популярных(наряду с собакой) «животных-компаньонов». Являясь одиночным охотником на грызунов и других мелких
+        животных, кошка — социальное животное, использующее для общения широкий диапазон звуковых сигналов.</p>
+    </div>
+  </div>
+  <script>
+
+    /**
+     * Есть список сообщений.
+     * 
+     * При помощи JavaScript для каждого сообщения 
+     * добавьте в верхний правый угол кнопку закрытия.
+    */
+
+    // создадим кнопку
+    function createButton(className) {
+      let btn = document.createElement('button');
+      btn.classList.add(className);
+      btn.style.top = 0;
+      btn.style.rigth = 0;
+      btn.innerText = '[x]';
+
+      return btn;
+    }
+
+    // коллекция сообщений
+    let messages = document.querySelectorAll('.pane');
+
+    // добавим кнопку в каждое сообщение
+    for (let message of messages) {
+
+      // создадим клон
+      let cloneBtn = createButton('remove-button').cloneNode(true);
+
+      // на каждую кнопку повесим обработчик клика
+      // удаляем родительский элемент
+      cloneBtn.onclick = (e) => e.currentTarget.closest('.pane').remove();
+
+      // вставим в сообщение
+      message.append(cloneBtn);
+
+    }
+
+  </script>
+</body>
+
+</html>
