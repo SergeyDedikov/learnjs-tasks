@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      position: relative;
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: green;
+      overflow: hidden;
+    }
+
+    #field:hover {
+      cursor: crosshair;
+    }
+
+    /* Зададим стили для мяча */
+    #ball {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      top: 0;
+      left: 0;
+      transition: 1s all ease-in-out;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Нажмите на поле для перемещения мяча.
+  <br> Мяч не должен выходить за границы поля.
+
+
+  <div id="field">
+    <img src="https://ru.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+  <script>
+    /** Задача 4
+     * 
+     * Пусть мяч перемещается при клике на поле, туда, куда был клик
+     * 
+     * Требования:
+     * 
+     * Центр мяча должен совпадать с местом нажатия мыши 
+     * (если это возможно без пересечения краёв поля);
+     * CSS-анимация желательна, но не обязательна;
+     * Мяч ни в коем случае не должен пересекать границы поля;
+     * При прокрутке страницы ничего не должно ломаться;
+     * 
+     * Заметки:
+     * 
+     * Код должен уметь работать с различными размерами мяча и поля, 
+     * не привязываться к каким-либо фиксированным значениям.
+     * 
+     * Используйте свойства event.clientX/event.clientY 
+     * для определения координат мыши при клике.
+     * 
+    */
+
+    /** 
+       * При вычислении координат учитываем границы элемента
+    */
+    function getCoords(elem) {
+      let box = elem.getBoundingClientRect();
+
+      return {
+        top: box.top + elem.clientTop,
+        left: box.left + elem.clientLeft
+      };
+
+    }
+
+    // перемещаем мяч
+    function moveBall(evt) {
+
+      // координаты поля 
+      let fieldCoords = getCoords(field);
+
+      let x = evt.clientX;
+      let y = evt.clientY;
+
+      let halfBall = ball.clientWidth / 2;
+      let sizeBall = ball.clientWidth;
+
+      // новые координаты для мяча
+      // разница между координатами клика и границей поля
+      // учитываем половину диаметра мяча
+
+      let ballCoords = {
+        left: x - fieldCoords.left - halfBall,
+        top: y - fieldCoords.top - halfBall,
+      };
+
+      // запрещаем пересекать верх поля
+      if (ballCoords.top < 0) ballCoords.top = 0;
+
+      // запрещаем пересекать левую границу поля
+      if (ballCoords.left < 0) ballCoords.left = 0;
+
+      // запрещаем пересекать правую границу поля
+      if (ballCoords.left + sizeBall > field.clientWidth) {
+        ballCoords.left = field.clientWidth - sizeBall;
+      }
+
+      // запрещаем пересекать низ поля
+      if (ballCoords.top + sizeBall > field.clientHeight) {
+        ballCoords.top = field.clientHeight - sizeBall;
+      }
+
+      ball.style.top = ballCoords.top + 'px';
+      ball.style.left = ballCoords.left + 'px';
+    }
+
+    // слушаем клик
+    field.addEventListener('click', moveBall);
+
+  </script>
+
+</body>
+
+</html>
