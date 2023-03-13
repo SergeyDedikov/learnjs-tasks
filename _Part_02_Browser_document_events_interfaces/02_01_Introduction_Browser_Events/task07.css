@@ -1,0 +1,64 @@
+#carousel {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background-color: wheat;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 10px gray);
+  padding: 40px;
+}
+
+.container {
+  width: 390px;
+  overflow: hidden;
+}
+
+.arrow {
+  padding: 0;
+  background: sandybrown;
+  border-radius: 50%;
+  border: none;
+  font-size: 24px;
+  line-height: 24px;
+  color: darkblue;
+  display: block;
+  width: 30px;
+  aspect-ratio: 1;
+
+}
+
+.arrow:focus {
+  outline: none;
+}
+
+.arrow:hover {
+  background: peru;
+  cursor: pointer;
+}
+
+ul {
+  height: 130px;
+  width: 9999px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+  overflow: hidden;
+  /* перемещение всего списка */
+  transform: translateX(0px);
+  transition: transform 1s ease-in-out;
+}
+
+ul img {
+  width: 130px;
+  height: 130px;
+  display: block;
+  /* убираем пустое место вокруг картинок */
+}
+
+ul li {
+  display: inline-block;
+  /* убираем пустое место между элементами списка */
+}

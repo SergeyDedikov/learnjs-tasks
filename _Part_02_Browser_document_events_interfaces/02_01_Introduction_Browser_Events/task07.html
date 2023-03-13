@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<!-- 
+  Задача 7.
+
+  Создайте «Карусель» –- ленту изображений, 
+  которую можно листать влево-вправо нажатием на стрелочки.
+
+ -->
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./task07.css">
+</head>
+
+<body>
+
+  <!-- создайте свою разметку со стилями -->
+  <div id="carousel">
+    <button id="btn-left" class="arrow">⇦</button>
+    <div class="container">
+      <ul>
+        <li><img src="https://ru.js.cx/carousel/1.png"></li>
+        <li><img src="https://ru.js.cx/carousel/2.png"></li>
+        <li><img src="https://ru.js.cx/carousel/3.png"></li>
+        <li><img src="https://ru.js.cx/carousel/4.png"></li>
+        <li><img src="https://ru.js.cx/carousel/5.png"></li>
+        <li><img src="https://ru.js.cx/carousel/6.png"></li>
+        <li><img src="https://ru.js.cx/carousel/7.png"></li>
+        <li><img src="https://ru.js.cx/carousel/8.png"></li>
+        <li><img src="https://ru.js.cx/carousel/9.png"></li>
+        <li><img src="https://ru.js.cx/carousel/10.png"></li>
+      </ul>
+    </div>
+    <button id="btn-right" class="arrow">⇨</button>
+  </div>
+
+  <script>
+    // отметить картинки для удобства разработки
+    // этот код может быть удалён по вашему усмотрению
+    let i = 1;
+    for (let li of document.querySelectorAll('li')) {
+      li.style.position = 'relative';
+      li.insertAdjacentHTML('beforeend', `<span style="position:absolute;left:0;top:0">${i}</span>`);
+      i++;
+    }
+
+    // ...ваш код, который сделает карусель рабочей
+
+    const list = carousel.querySelector('ul');
+    let listItems = carousel.querySelectorAll('li');
+
+    const btnLeft = carousel.querySelector('#btn-left');
+    const btnRight = carousel.querySelector('#btn-right');
+
+    // конфигурация перемещения 
+    let position = 0;
+    let width = 130; // ширина картинки
+    let count = 3; // видимое количество изображений
+
+    // обработчик кнопки влево
+    btnLeft.onclick = function () {
+      // сдвиг влево в отрицательную сторону
+      position -= width * count;
+      // последнее передвижение влево может на 2 или 1 элемент
+      position = Math.max(position, -width * (listItems.length - count));
+      list.style.transform = `translateX(${position}px)`;
+    }
+
+    // обработчик кнопки вправо
+    btnRight.onclick = function () {
+      // сдвиг вправо
+      position += width * count;
+      // последнее передвижение может быть на 2 или 1 элемент
+      position = Math.min(position, 0);
+      list.style.transform = `translateX(${position}px)`;
+    }
+
+  </script>
+
+</body>
+
+</html>
