@@ -1,1 +1,3 @@
-# learnjs-tasks
+# Решение задач
+
+Задачи с сайта https://learn.javascript.ru
